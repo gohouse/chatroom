@@ -44,14 +44,14 @@ func Run() {
 	go room.Work()
 
 	// 前端静态页面渲染
-	http.Handle("/client/", http.StripPrefix("/client/", http.FileServer(http.Dir(conf.Static))))
+	http.Handle("/", http.StripPrefix("", http.FileServer(http.Dir(conf.Static))))
 	// 获取配置接口
 	http.HandleFunc("/getconfig", getConfig)
 	// ws 服务地址
 	http.Handle(conf.Uri, room)
 
 	// 开启服务
-	log.Printf("visit: http://localhost%s/%s/client.html\n", conf.Host, "client")
+	log.Printf("visit: http://localhost%s\n", conf.Host, "client")
 	log.Fatal(http.ListenAndServe(conf.Host, nil))
 }
 
