@@ -1,5 +1,5 @@
 var config = {
-    showMsgListLength: 18,
+    showMsgListLength: 200,
     sendMsgListLength: 5,
     messageType:{
         MT_Broadcast: 1,
