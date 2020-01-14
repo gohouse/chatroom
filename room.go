@@ -1,0 +1,135 @@
+package chatroom
+
+import (
+	"fmt"
+	"github.com/gohouse/date"
+	"github.com/gohouse/t"
+	"github.com/gohouse/chatroom/util"
+	"github.com/gorilla/websocket"
+	"log"
+	"net/http"
+	"time"
+)
+
+const (
+	socketBufferSize  = 1024
+	messageBufferSize = 256
+)
+
+type Room struct {
+	upgrade   *websocket.Upgrader
+	join      chan *Client
+	leave     chan *Client
+	clients   map[*Client]bool
+	topic     string
+	broadcast chan *Response
+}
+
+func NewRoom() *Room {
+	var upgrade = &websocket.Upgrader{
+		//ReadBufferSize:  socketBufferSize,
+		//WriteBufferSize: socketBufferSize,
+		CheckOrigin: func(r *http.Request) bool {
+			return true
+		},
+	}
+	return &Room{
+		upgrade:   upgrade,
+		join:      make(chan *Client),
+		leave:     make(chan *Client),
+		clients:   make(map[*Client]bool),
+		broadcast: make(chan *Response),
+	}
+}
+
+func (room *Room) ServeHTTP(w http.ResponseWriter, r *http.Request) {
+	var user = r.FormValue("u")
+	// 升级为 websocket
+	conn, err := room.upgrade.Upgrade(w, r, nil)
+	if err != nil {
+		fmt.Println("websocket error:", err)
+		return
+	}
+	fmt.Println("client connect :", conn.RemoteAddr())
+
+	// 注册客户端
+	var cli = Client{
+		room:    room,
+		conn:    conn,
+		aliveAt: time.Now(),
+		user:    user,
+	}
+	// 加入到加入聊天室队列
+	go func() {
+		room.join <- &cli
+	}()
+	log.Println("注册客户端: ", conn.RemoteAddr())
+
+	//// 生命周期维护
+	//go ws.TimeoutCheck(conn)
+	// 读取消息
+	go cli.ReadMessage()
+}
+
+func (room *Room) Work() {
+	for {
+		select {
+		case cli := <-room.join: // 加入房间
+
+			// 上线通知
+			go room.Join(cli)
+			log.Println("join room: ", cli.conn.RemoteAddr())
+			//room.clients[cli] = true
+			util.WithLockContext(func() {
+				room.clients[cli] = true
+			})
+		case cli := <-room.leave: // 离开房间
+			log.Println("leave room: ", cli.conn.RemoteAddr(),t.New(cli).String())
+			go room.Leave(cli)
+			cli.conn.Close()
+			//delete(room.clients, cli)
+			util.WithLockContext(func() {
+				delete(room.clients, cli)
+			})
+		case resp := <-room.broadcast:
+			log.Println("broadcast: ", t.New(resp).String())
+			for cli := range room.clients {
+				err := cli.conn.WriteJSON(resp)
+				if err != nil {
+					room.leave <- cli
+				}
+			}
+		}
+	}
+}
+
+func (room *Room) Join(cli *Client)  {
+	var resp = Response{
+		MT:     MT_Connected,
+		Msg:    MT_Connected.String(),
+		User:   cli.user,
+		SendAt: time.Now().Format(date.DateTimeFormat),
+	}
+	room.broadcast <- &resp
+}
+
+func (room *Room) Leave(cli *Client)  {
+	var resp = Response{
+		MT:     MT_Disconnected,
+		Msg:    MT_Disconnected.String(),
+		User:   cli.user,
+		SendAt: time.Now().Format(date.DateTimeFormat),
+	}
+	room.broadcast <- &resp
+}
+
+func (room *Room) Broadcast(cli *Client, msg *Message)  {
+	var resp = Response{
+		MT:     msg.MT,
+		Msg:    msg.Msg,
+		User:   cli.user,
+		SendAt: time.Now().Format(date.DateTimeFormat),
+	}
+
+	cli.room.broadcast <- &resp
+}
