@@ -26,7 +26,7 @@ func init() {
 		}
 	}
 	if conf.Host == "" {
-		conf.Host = "localhost:9200"
+		conf.Host = ":9200"
 	}
 	if conf.Uri == "" {
 		conf.Uri = "/ws"
@@ -51,7 +51,7 @@ func Run() {
 	http.Handle(conf.Uri, room)
 
 	// 开启服务
-	log.Printf("visit: http://%s/%s/client.html\n", conf.Host, "client")
+	log.Printf("visit: http://localhost%s/%s/client.html\n", conf.Host, "client")
 	log.Fatal(http.ListenAndServe(conf.Host, nil))
 }
 
