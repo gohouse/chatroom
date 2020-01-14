@@ -51,7 +51,7 @@ func Run() {
 	http.Handle(conf.Uri, room)
 
 	// 开启服务
-	log.Printf("visit: http://localhost%s\n", conf.Host, "client")
+	log.Printf("visit: http://localhost%s\n", conf.Host)
 	log.Fatal(http.ListenAndServe(conf.Host, nil))
 }
 
