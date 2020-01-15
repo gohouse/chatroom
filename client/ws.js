@@ -190,7 +190,7 @@ function genUsername(id) {
 
 
 function greet() {
-    var slice = [youmo,hejiu,mingyanzhuangbi,englishGreeting]
+    var slice = [youmo,hejiu,mingyanzhuangbi,englishGreeting,laoshi]
 
     var idx = randomNum(0,slice.length-1)
 
@@ -314,5 +314,19 @@ function hejiu() {
 "不会喝酒，前途没有。",
 "只要心里有，茶水也当酒。",
 "市场经济搞竞争，快将美酒喝一盅。"]
+    return slice[randomNum(0,slice.length-1)]
+}
+
+function laoshi() {
+    var slice = ["你们是我教过的学生中最差的一届",
+"这又是一道送分题",
+"你们一人浪费一分钟，这一节课就过去了",
+"看我干嘛？看书啊.、看书干嘛？看黑板啊、看黑板干嘛？看我啊",
+"上初中时:等你们高中了就轻松了. 上高中时：等你们大学了就轻松了",
+"我就耽误大家一分钟，这道题讲完就下课",
+"这题还有没有不懂的？好，我们来看下一道题",
+"体育老师今天有事，这节课我来上",
+"你晚上打鬼去啦？这么一点作业都没做完！给我滚到外面去补",
+"没人举手是吧？那我点名了"]
     return slice[randomNum(0,slice.length-1)]
 }
