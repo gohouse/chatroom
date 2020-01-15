@@ -190,7 +190,7 @@ function genUsername(id) {
 
 
 function greet() {
-    var slice = [youmo,hejiu,mingyanzhuangbi,englishGreeting,laoshi]
+    var slice = [youmo,hejiu,mingyanzhuangbi,englishGreeting,laoshi,movieMingyan]
 
     var idx = randomNum(0,slice.length-1)
 
@@ -314,6 +314,29 @@ function hejiu() {
 "不会喝酒，前途没有。",
 "只要心里有，茶水也当酒。",
 "市场经济搞竞争，快将美酒喝一盅。"]
+    return slice[randomNum(0,slice.length-1)]
+}
+
+function movieMingyan() {
+    var slice = ["Yesterday is history, tomorrow is a mystery, but today is a gift, that is why it’s called present！ (昨天已成为历史，明天是未知的，而今天是上天赐予我们的礼物，这就是为什么我们把它叫做现在！——《功夫熊猫》)",
+        "If there’s any kind of magic in the world, it must be the attempt of understanding someone or share something. (如果世上真的有什么奇迹，那么一定是去理解他人和与人分享。——《日出之前》)",
+        "I promise you, if God had gifted me with wealth and beauty, I would make it as hard for you to leave me now as it is for me to leave you. (告诉你吧，如果上帝赐予我财富和美貌，我会让您难以离开我，就像我现在难以离开您。——《简·爱》)",
+        "Time erodes all such beauty, but what it cannot diminish… is the wonderful workings of your mind. Your humor, your kindness… and your moral courage. (时间可以吞噬一切,但它丝毫不能减少的是你伟大的思想,你的幽默,你的善良,还有你的勇气。——《小妇人》)",
+        "I was blessed to have you in my life. When I look back on these days, I’ll look and see your face.You were right there for me. (在我的生命中有你是多么幸运,当我回忆过去, 眼前就会浮现你的脸庞 ,你总会在那守候着我。——《珍珠港》)",
+        "I guess our love story will never be seen on the big wide silver screen, but it hurt just as badly when I had to watch you go. (我想，我们的故事永远不会出现在银幕上，可是当我看着你离去，我的心一样的痛楚。 ——《卡萨布兰卡》)",
+        "If you really love someone, the whole life will not be enough. You need time to know, to forgive and to love. All this needs a very big mind. (爱的次数不需多，只需真爱。真爱需要时间去经营，需要用心去了解，需要胸襟去包容。——《初恋50次》)",
+        "Some people hear their own inner voices with great clearness. And they live by what they hear.Such people become crazy,or they become legends … (有些人能清楚地听到自己内心深处的声音，并以此行事。这些人要么变成了疯子，要么成为传奇。——《秋日传奇》)",
+        "To be a princess, you have to believe you are one. You’ve got to walk the way you think a princess would walk. Smile and wave, and just have fun. (要想成为公主，你得相信自己就是一个公主。你应该像你所想象中的公主那般为人处世。高瞻远嘱，从容不迫，笑对人生。——《公主日记》)",
+        "You got a dream,you gotta protect it.People can’t do something themselves,they wanna tell you you can’t do it.If you want something,go get it. (不要别人告诉你该做什么，有梦想，就得保护。他人做不成什么事情，就跟你说你也做不成。如果你想要什么，就要去争取。——《当幸福来敲门》)",
+        "We never had the chance to explore the outside world because of my dad's one rule:New is always bad. Never not be afraid!  (我们从没机会探索外面的世界，是因为我爸爸的那条规则：新事物是不好的，永远要小心!——《疯狂原始人》)",
+        "This path has been placed before you. The choice is yours alone.  (路就在你脚下，你自己决定。——《星球大战－首部曲》)",
+        "Nothing just happens,it's all part of a plan. (没有事情随随便便发生，都是计划的一部分。)",
+        "It takes a strong man to save himself, and a great man to save another. (坚强的人只能救赎自己，伟大的人才能拯救他人。)",
+        "Hope is a good thing, maybe the best of things, and no good thing ever dies. (希望是美好的，也许是人间至善，而美好的事物永不消逝.)",
+        "Some birds aren't meant to be caged, that's all. Their feathers are just too bright... (有的鸟是不会被关住的，因为它们的羽毛太美丽了！)",
+        "Fear can hold you prisoner. Hope can set you free. A strong man can save himself. A greatman can save another. (懦怯囚禁人的灵魂，希望可以感受自由。强者自救，圣者渡人。 --《肖申克的救赎》)",
+        "Your story may not have a happy beginning, but that doesn't make you who you are, it is restof your story, who you choose to be. (你或许没有一个幸福的开始，但是这并不能够代表你的所有，接下来你的生活取决于你的选择。 --《功夫熊猫2》)",
+        "When you choose to become others, you will lose yourself. (当你选择成为别人时，你将失去你自己。 --《纳尼亚传奇3》)",]
     return slice[randomNum(0,slice.length-1)]
 }
 
