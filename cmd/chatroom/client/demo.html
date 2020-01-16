@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<input type="file" name="photo" id="photo" onchange="postData(this)" style="display:none">
+<button onclick="bindUpload()" style="width:100px;height:30px;">上传</button>
+
+<div id="result">
+    <img src="" alt="">
+</div>
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+<script>
+    function bindUpload() {
+        $("#photo").trigger("click")
+    }
+    function postData(obj) {
+        var formData = new FormData();
+        formData.append("smfile", $(obj)[0].files[0]);
+        $.ajax({
+            url: 'https://sm.ms/api/v2/upload', /*接口域名地址*/
+            type: 'post',
+            data: formData,
+            contentType: false,
+            processData: false,
+            dataType: "json",
+            success: function (res) {
+                if (res.success == false) {
+                    if (res.code == "image_repeated") {
+                        $("#result img").attr("src", res.images)
+                    } else {
+                        alert("上传失败: "+res.message)
+                    }
+                } else {
+                    $("#result img").attr("src", res.data.url)
+                }
+            }
+        })
+    }
+
+    // false
+    var file_false = {
+        "success": false,
+        "code": "image_repeated",
+        "message": "Image upload repeated limit, this image exists at: https://i.loli.net/2020/01/15/QMqRirIhXYoFmCL.jpg",
+        "images": "https://i.loli.net/2020/01/15/QMqRirIhXYoFmCL.jpg",
+        "RequestId": "77239804-12DD-491F-95E3-66DA650F23CB"
+    }
+    // success
+    var file_success = {
+        "success": true,
+        "code": "success",
+        "message": "Upload success.",
+        "data": {
+            "file_id": 0,
+            "width": 600,
+            "height": 600,
+            "filename": "55e736,d12f2eb938e97318b8a380c130e4dd6f41.jpeg",
+            "storename": "z4dKob617LWimef.jpg",
+            "size": 58300,
+            "path": "/2020/01/15/z4dKob617LWimef.jpg",
+            "hash": "748Ig6FlQK2iAWUtEdLHkvryNV",
+            "url": "https://i.loli.net/2020/01/15/z4dKob617LWimef.jpg",
+            "delete": "https://sm.ms/delete/748Ig6FlQK2iAWUtEdLHkvryNV",
+            "page": "https://sm.ms/image/z4dKob617LWimef"
+        },
+        "RequestId": "FF8A57EB-7F1F-4486-BBC3-D00A1085CDD1"
+    }
+</script>
+</body>
+</html>
