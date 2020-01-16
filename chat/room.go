@@ -113,7 +113,7 @@ func (room *Room) BuildJoin(cli *Client)  {
 	room.join <- cli
 }
 func (room *Room) BuildLeave(cli *Client)  {
-	room.join <- cli
+	room.leave <- cli
 }
 func (room *Room) BuildResponse(resp *Response)  {
 	room.broadcast <- resp
