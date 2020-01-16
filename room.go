@@ -60,9 +60,7 @@ func (room *Room) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 		user:    user,
 	}
 	// 加入到加入聊天室队列
-	go func() {
-		room.join <- &cli
-	}()
+	go cli.Join()
 	log.Println("注册客户端: ", conn.RemoteAddr())
 
 	//// 生命周期维护
@@ -75,9 +73,7 @@ func (room *Room) Work() {
 	for {
 		select {
 		case cli := <-room.join: // 加入房间
-
 			// 上线通知
-			go room.Join(cli)
 			log.Println("join room: ", cli.conn.RemoteAddr())
 			//room.clients[cli] = true
 			util.WithLockContext(func() {
@@ -85,7 +81,6 @@ func (room *Room) Work() {
 			})
 		case cli := <-room.leave: // 离开房间
 			log.Println("leave room: ", cli.conn.RemoteAddr(),t.New(cli).String())
-			go room.Leave(cli)
 			cli.conn.Close()
 			//delete(room.clients, cli)
 			util.WithLockContext(func() {
@@ -96,31 +91,11 @@ func (room *Room) Work() {
 			for cli := range room.clients {
 				err := cli.conn.WriteJSON(resp)
 				if err != nil {
-					room.leave <- cli
+					go cli.Leave()
 				}
 			}
 		}
 	}
-}
-
-func (room *Room) Join(cli *Client)  {
-	var resp = Response{
-		MT:     MT_Connected,
-		Msg:    MT_Connected.String(),
-		User:   cli.user,
-		SendAt: time.Now().Format(date.DateTimeFormat),
-	}
-	room.broadcast <- &resp
-}
-
-func (room *Room) Leave(cli *Client)  {
-	var resp = Response{
-		MT:     MT_Disconnected,
-		Msg:    MT_Disconnected.String(),
-		User:   cli.user,
-		SendAt: time.Now().Format(date.DateTimeFormat),
-	}
-	room.broadcast <- &resp
 }
 
 func (room *Room) Broadcast(cli *Client, msg *Message)  {
@@ -132,4 +107,14 @@ func (room *Room) Broadcast(cli *Client, msg *Message)  {
 	}
 
 	cli.room.broadcast <- &resp
+}
+
+func (room *Room) BuildJoin(cli *Client)  {
+	room.join <- cli
+}
+func (room *Room) BuildLeave(cli *Client)  {
+	room.join <- cli
+}
+func (room *Room) BuildResponse(resp *Response)  {
+	room.broadcast <- resp
 }
