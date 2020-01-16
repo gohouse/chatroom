@@ -6,13 +6,13 @@ golang简单聊天室, 使用 `h5 + gorilla` 实现, 可自由拓展为多个聊
 
 ## 运行
 ### docker运行
-- 安装docker和docker-compose
-```shell script
-git clone https://github.com/gohouse/chatroom.git --depth=1
-cd chatroom
-docker-compose up -d
-```
-访问: http://localhost:9200 即可使用
+- 安装`docker`和`docker-compose`
+    ```shell script
+    git clone https://github.com/gohouse/chatroom.git --depth=1
+    cd chatroom
+    docker-compose up -d
+    ```
+    访问: http://localhost:9200 即可使用
 
 ### 手动运行
 - 安装 golang  
@@ -27,6 +27,7 @@ windows 下开启: `go env -w GO111MODULE=on`
     go mod tidy && go mod download
     go run main.go
     ```
+    访问: http://localhost:9200 即可使用
 
 ## 效果图
 ![](static/chatroom.jpg)
