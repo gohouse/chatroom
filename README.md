@@ -5,6 +5,16 @@ golang简单聊天室, 使用 `h5 + gorilla` 实现, 可自由拓展为多个聊
 [http://demo.xxjj.cf:9200](http://demo.xxjj.cf:9200)
 
 ## 运行
+### docker运行
+- 安装docker和docker-compose
+```shell script
+git clone https://github.com/gohouse/chatroom.git --depth=1
+cd chatroom
+docker-compose up -d
+```
+访问: http://localhost:9200 即可使用
+
+### 手动运行
 - 安装 golang  
 - 使用`vgo`进行版本控制,开启`GO111MODULE`  
 unix/linux 下开启: `export GO111MODULE=on`  

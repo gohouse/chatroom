@@ -2,8 +2,11 @@ version: '3.1'
 
 services:
   chatroom:
-    build: .
+    image: ababy/golang-dependency
     container_name: chatroom
+    volumes:
+    - .:/go/src/chatroom
     ports:
       - 9200:9200
-    command: chatroom
+    working_dir: /go/src/chatroom
+    command: go run main.go
