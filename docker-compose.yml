@@ -3,16 +3,7 @@ version: '3.1'
 services:
   chatroom:
     build: .
-    container_name: goship
-    volumes:
-      - ./src/:/go/src/:rw
-    working_dir: /go/gohouse
-    environment:
-      TZ: ${tz}
-    command:
-      - sh
-      - -c
-      - |
-        goship -e config.toml
-        goship
-        tail -f /dev/null
+    container_name: chatroom
+    ports:
+      - 9200:9200
+    command: chatroom
