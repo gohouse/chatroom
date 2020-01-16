@@ -1,4 +1,4 @@
-package chatroom
+package chat
 
 type MessageType int
 
