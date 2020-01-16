@@ -11,12 +11,14 @@ import (
 
 var (
 	f string
+	v bool
 )
 
 var conf Config
 
 func init() {
 	flag.StringVar(&f, "f", "", "配置文件")
+	flag.BoolVar(&v, "v", false, "版本号")
 	flag.Parse()
 	// 解析配置
 	if f!= "" {
@@ -37,6 +39,10 @@ func init() {
 }
 
 func Run() {
+	if v {
+		fmt.Println("chatroom version is :\n	",VERSION)
+		return
+	}
 
 	// 初始化房间
 	room := NewRoom()
