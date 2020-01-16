@@ -2,9 +2,10 @@ package chat
 
 import (
 	"fmt"
+	"github.com/gohouse/chatroom/persist"
+	"github.com/gohouse/chatroom/util"
 	"github.com/gohouse/date"
 	"github.com/gohouse/t"
-	"github.com/gohouse/chatroom/util"
 	"github.com/gorilla/websocket"
 	"log"
 	"net/http"
@@ -17,15 +18,17 @@ const (
 )
 
 type Room struct {
-	upgrade   *websocket.Upgrader
-	join      chan *Client
-	leave     chan *Client
-	clients   map[*Client]bool
-	topic     string
-	broadcast chan *Response
+	persist.Persister
+	upgrade    *websocket.Upgrader
+	join       chan *Client
+	leave      chan *Client
+	clients    map[*Client]bool
+	topic      string
+	broadcast  chan *Response
+	persistMsg chan *persist.Message
 }
 
-func NewRoom() *Room {
+func NewRoom(ps persist.Persister) *Room {
 	var upgrade = &websocket.Upgrader{
 		//ReadBufferSize:  socketBufferSize,
 		//WriteBufferSize: socketBufferSize,
@@ -34,11 +37,13 @@ func NewRoom() *Room {
 		},
 	}
 	return &Room{
+		Persister: ps,
 		upgrade:   upgrade,
 		join:      make(chan *Client),
 		leave:     make(chan *Client),
 		clients:   make(map[*Client]bool),
 		broadcast: make(chan *Response),
+		persistMsg:make(chan *persist.Message),
 	}
 }
 
@@ -80,7 +85,7 @@ func (room *Room) Work() {
 				room.clients[cli] = true
 			})
 		case cli := <-room.leave: // 离开房间
-			log.Println("leave room: ", cli.conn.RemoteAddr(),t.New(cli).String())
+			log.Println("leave room: ", cli.conn.RemoteAddr(), t.New(cli).String())
 			cli.conn.Close()
 			//delete(room.clients, cli)
 			util.WithLockContext(func() {
@@ -98,7 +103,7 @@ func (room *Room) Work() {
 	}
 }
 
-func (room *Room) Broadcast(cli *Client, msg *Message)  {
+func (room *Room) Broadcast(cli *Client, msg *Message) {
 	var resp = Response{
 		MT:     msg.MT,
 		Msg:    msg.Msg,
@@ -109,12 +114,12 @@ func (room *Room) Broadcast(cli *Client, msg *Message)  {
 	cli.room.broadcast <- &resp
 }
 
-func (room *Room) BuildJoin(cli *Client)  {
+func (room *Room) BuildJoin(cli *Client) {
 	room.join <- cli
 }
-func (room *Room) BuildLeave(cli *Client)  {
-	room.join <- cli
+func (room *Room) BuildLeave(cli *Client) {
+	room.leave <- cli
 }
-func (room *Room) BuildResponse(resp *Response)  {
+func (room *Room) BuildResponse(resp *Response) {
 	room.broadcast <- resp
 }
