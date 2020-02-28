@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>点击看大图</title>
+    <!-- <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" /> -->
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no,minimal-ui" />
+    <style>
+        .showimg>img{width: 200px;}
+        .showimg-big{display: none;position:fixed; width: 100%;height: 100%;left:0;top:0;z-index:20;opacity: 0}
+        .showimg:focus+.showimg-big{display: block;}
+        .showimg:focus:before{position:fixed;content:'';z-index: 10;left:0;top:0;width: 100%;height: 100%;background-color:rgba(0,0,0,.9);}
+        .showimg:focus>img{z-index: 11; width: auto;height:auto;left:0;position: absolute;top:0;right:0;bottom:0;margin:auto;}
+    </style>
+</head>
+<body>
+<p>点击查看1</p>
+<a href="javascript:;" class="showimg"><img src="img/chuyin.jpg" alt=""></a><span class="showimg-big"></span>
+<p>点击查看2</p>
+<a href="javascript:;" class="showimg"><img src="img/chuyin.jpg" alt=""></a><span class="showimg-big"></span>
+</body>
+</html>
+  

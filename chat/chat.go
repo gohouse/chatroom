@@ -45,7 +45,7 @@ func Run() {
 	}
 
 	// 初始化房间
-	room := NewRoom()
+	room := NewRoom(nil)
 	// 房间开始工作
 	go room.Work()
 

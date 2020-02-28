@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet/less" type="text/css" href="./less/wechat_bubble.less"/>
+    <script src="./js/less.min.js"></script>
+    <style>
+    </style>
+</head>
+<body>
+<div id="box">
+    <div id="chatpage-box">
+        <div id="chatpage">
+            <div class="leftd">
+        <span class="leftd_h">
+            <img class="head-img" src="./img/avatar.jpg" alt=""/>
+        </span>
+                <div class="speech left">
+                    二货，你看你傻样！
+                </div>
+            </div>
+
+            <div class="rightd">
+        <span class="rightd_h">
+            <img class="head-img" src="./img/avatar.jpg" alt=""/>
+        </span>
+                <div class="speech right">
+                    嘻嘻嘻嘻。。。。。。
+                </div>
+            </div>
+
+            <div class="leftd">
+                <span class="leftd_h">
+                    <img class="head-img" src="./img/avatar.jpg" alt=""/>
+                </span>
+                <div class="speech left">
+                    <img class="chat-img" onclick="imgShow(this)" src="./img/1.png" alt="">
+                </div>
+            </div>
+
+            <div class="rightd">
+                <span class="rightd_h">
+                    <img class="head-img" src="./img/avatar.jpg" alt=""/>
+                </span>
+                <div class="speech right">
+                    <img class="chat-img" onclick="imgShow(this)" src="./img/chuban_dushi.png" alt="">
+                </div>
+            </div>
+
+            <div class="leftd">
+                <span class="leftd_h">
+                    <img class="head-img" src="./img/avatar.jpg" alt=""/>
+                </span>
+                <div class="speech left">
+                    <img class="chat-img" onclick="imgShow(this)" src="./img/1.png" alt="">
+                </div>
+            </div>
+
+            <div class="rightd">
+                <span class="rightd_h">
+                    <img class="head-img" src="./img/avatar.jpg" alt=""/>
+                </span>
+                <div class="speech right">
+                    <img class="chat-img" onclick="imgShow(this)" src="./img/chuban_dushi.png" alt="">
+                </div>
+            </div>
+
+            <div class="leftd">
+                <span class="leftd_h">
+                    <img class="head-img" src="./img/avatar.jpg" alt=""/>
+                </span>
+                <div class="speech left">
+                    <img class="chat-img" onclick="imgShow(this)" src="./img/1.png" alt="">
+                </div>
+            </div>
+
+            <div class="rightd">
+                <span class="rightd_h">
+                    <img class="head-img" src="./img/avatar.jpg" alt=""/>
+                </span>
+                <div class="speech right">
+                    <img class="chat-img" onclick="imgShow(this)" src="./img/chuban_dushi.png" alt="">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="chatinput">
+        <div><button class="inputimg btn btn-primary">图</button></div>
+        <div><input type="text" class="inputbox" /></div>
+        <div><button class="inputsubmit btn btn-success">发送</button></div>
+    </div>
+
+    <div id="imgshow">
+        <img src="" alt="">
+    </div>
+</div>
+
+
+<script src="js/jquery.min.js"></script>
+<script>
+    var imgshow = $("#imgshow")
+    function imgShow(obj) {
+        imgshow.show()
+        imgshow.css("z-index",99999)
+        imgshow.find("img").attr("src", $(obj).attr("src"))
+    }
+    imgshow.click(function () {
+        $(this).toggle()
+    })
+</script>
+</body>
+</html>

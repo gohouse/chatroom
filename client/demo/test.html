@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>五种实现左中右自适应布局方法</title>
+</head>
+<style type="text/css">
+    /* 方法一 浮动 */
+    /* .parent {
+        clear: both;
+    }
+    .left{
+        float: left;
+        width: 200px;
+        background-color: #0000FF;
+    }
+    .right{
+        float: right;
+        width: 200px;
+        background-color: aqua;
+    }
+    .center{
+        padding: 0 200px; //margin  也行
+        background-color: aquamarine;
+    } */
+    /* 方法二 flex */
+    /* .parent {
+        display: flex;
+    }
+    .left{
+        width: 200px;
+        background-color: #0000FF;
+    }
+    .right{
+        width: 200px;
+        background-color: aqua;
+    }
+    .center{
+        flex: 1;
+        background-color: aquamarine;
+    } */
+    /* 方法三 定位*/
+    /* .parent{
+        position: relative;
+    }
+    .left{
+        position: absolute;
+        top: 0;
+        left: 0;
+    width: 200px;
+        background-color: #0000FF;
+    }
+    .right{
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 200px;
+        background-color: aqua;
+    }
+    .center{
+        padding: 0 200px;
+        background-color: aquamarine;
+    } */
+    /* 方法四 grid */
+    .parent {
+        display: grid;
+        grid-template-columns: 200px auto 200px;
+    }
+
+    .left {
+        background-color: #0000FF;
+    }
+
+    .right {
+        background-color: aqua;
+    }
+
+    .center {
+        background-color: aquamarine;
+    }
+    /* 方法五 inline-block + calc */
+    *{
+        padding: 0;
+        margin: 0;
+    }
+    /*.parent {*/
+    /*    clear: both;*/
+    /*    !* 干掉间隙 *!*/
+    /*    font-size: 0*/
+    /*}*/
+
+    /*.left {*/
+    /*    display: inline-block;*/
+    /*    width: 200px;*/
+    /*    font-size: 16px;*/
+    /*    background-color: #0000FF;*/
+    /*}*/
+
+    /*.right {*/
+    /*    display: inline-block;*/
+    /*    width: 200px;*/
+    /*    font-size: 16px;*/
+    /*    background-color: aqua;*/
+    /*}*/
+
+    /*.center {*/
+    /*    display: inline-block;*/
+    /*    width: calc(100% - 400px);*/
+    /*    font-size: 16px;*/
+    /*    background-color: aquamarine;*/
+    /*}*/
+</style>
+<body>
+<!-- 方法一 -->
+<!-- <div class="parent">
+    <div class="left">
+        左
+    </div>
+    <div class="right">
+        右
+    </div>
+    <div class="center">
+        中
+    </div>
+</div> -->
+<!-- 方法二 -->
+<!-- <div class="parent">
+    <div class="left">
+        左
+    </div>
+    <div class="center">
+        中
+    </div>
+    <div class="right">
+        右
+    </div>
+</div> -->
+<!-- 方法三 -->
+<!-- <div class="parent">
+    <div class="left">
+        左
+    </div>
+    <div class="center">
+        中
+    </div>
+    <div class="right">
+        右
+    </div>
+</div> -->
+<!-- 方法四 -->
+<!-- <div class="parent">
+    <div class="left">
+        左
+    </div>
+    <div class="center">
+        中
+    </div>
+    <div class="right">
+        右
+    </div>
+</div> -->
+<!-- 方法五 -->
+<div class="parent">
+    <div class="left">
+        左
+    </div>
+    <div class="center">
+        中
+    </div>
+    <div class="right">
+        右
+    </div>
+</div>
+</body>
+</html>

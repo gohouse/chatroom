@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>chat page</title>
+    <style>
+    </style>
+    <link rel="stylesheet/less" type="text/css" href="./less/index.less" />
+    <script src="./js/less.min.js" ></script>
+</head>
+<body>
+<div id="login" class="module" style="display: none">
+    <form id="form" onsubmit="login();return false;">
+        <div><h2><center>登录/注册</center></h2></div>
+        <div><input type="text" placeholder="用户名" id="username"></div>
+        <div><input type="text" placeholder="密码" id="password"></div>
+        <div>
+            <center>
+                <button class="btn btn-success">注册</button>&nbsp;
+                <button class="btn btn-success">登录</button>
+            </center>
+        </div>
+    </form>
+</div>
+<div id="friends" class="module" style="display: none">
+    <div class="head">
+        <span class="head_item head_list">列表</span>
+        <input type="text" class="head_item head_user" placeholder="输入用户名添加好友">
+        <span class="btn btn-success head_item head_add" onclick="add()">添加</span>
+        <span class="btn btn-danger head_item head_logout" onclick="logout()">退出</span>
+    </div>
+    <ul>
+        <li onclick="chat('chat_id')">
+            <div><img src="img/avatar.jpg" alt=""></div>
+            <div>他大舅</div>
+        </li>
+        <li onclick="chat('chat_id')">
+            <div><img src="img/avatar.jpg" alt=""></div>
+            <div>他二舅</div>
+        </li>
+        <li onclick="chat('chat_id')">
+            <div><img src="img/avatar.jpg" alt=""></div>
+            <div>都是他舅</div>
+        </li>
+        <li onclick="chat('chat_id')">
+            <div><img src="img/avatar.jpg" alt=""></div>
+            <div>高桌子</div>
+        </li>
+        <li onclick="chat('chat_id')">
+            <div><img src="img/avatar.jpg" alt=""></div>
+            <div>低板凳</div>
+        </li>
+        <li onclick="chat('chat_id')">
+            <div><img src="img/avatar.jpg" alt=""></div>
+            <div>都是木头</div>
+        </li>
+    </ul>
+</div>
+<div id="chat" class="module">
+    <!-- fixed定位的头部 (absolute绝对定位也可以)-->
+    <header>
+        <div class="back"><a href="javascript:void(0);" onclick="back()">&nbsp;< 返回</a></div>
+        <div class="title">chat with xxx</div>
+        <div class="more"><a href="javascript:void(0);">...</a></div>
+    </header>
+
+    <!-- 可以滚动的区域 -->
+    <main id="main">
+        <div class="content">
+            <!-- 内容在这里... -->
+            <div class="leftd">
+                <div class="leftd_h">
+                    <img class="head-img" src="./avatar/mm.jpeg" alt=""/>
+                </div>
+
+                <div class="leftd_m">
+                    <div class="user_head">
+                        <span class="user_head_item username">营业员(02-01 00:00)</span>
+                    </div>
+                    <div class="speech left">
+                        大爷你要办2G，3G还是4G的卡呀 ?
+                    </div>
+                </div>
+            </div>
+            <div class="rightd">
+                <div class="rightd_m">
+                    <div class="user_head">
+                        <span class="user_head_item username">(02-01 00:00)大爷</span>
+                    </div>
+                    <div class="speech right">
+                        姑娘，你给大爷介绍下呗。
+                    </div>
+                </div>
+
+                <div class="rightd_h">
+                    <img class="head-img" src="./avatar/gg.jpeg" alt=""/>
+                </div>
+            </div>
+            <div class="leftd">
+                <div class="leftd_h">
+                    <img class="head-img" src="./avatar/mm.jpeg" alt=""/>
+                </div>
+
+                <div class="leftd_m">
+                    <div class="user_head">
+                        <span class="user_head_item username">营业员(02-01 00:00)</span>
+                    </div>
+                    <div class="speech left">
+                        大爷可以这么给你讲，2g的卡可以看仓老师的文字，3g可以看仓老师的图片，4g可以看仓老师的视频。
+                    </div>
+                </div>
+            </div>
+            <div class="rightd">
+                <div class="rightd_m">
+                    <div class="user_head">
+                        <span class="user_head_item username">(02-01 00:00)大爷</span>
+                    </div>
+                    <div class="speech right">
+                        哎呦，这孩子，净说些大爷听不懂的，给大爷来张4g的。
+                    </div>
+                </div>
+
+                <div class="rightd_h">
+                    <img class="head-img" src="./avatar/gg.jpeg" alt=""/>
+                </div>
+            </div>
+
+            <!--<div class="rightd">
+                <span class="rightd_h">
+                    <img class="head-img" src="./avatar/mm.jpeg" alt=""/>
+                </span>
+                <div class="speech right">
+                    嘻嘻嘻嘻。。。。。。
+                </div>
+            </div>-->
+
+            <div class="leftd">
+                <div class="leftd_h">
+                    <img class="head-img" src="./avatar/mm.jpeg" alt=""/>
+                </div>
+
+                <div class="leftd_m">
+                    <div class="user_head">
+                        <span class="user_head_item username">他大舅(02-01 00:00)</span>
+                    </div>
+                    <div class="speech left">
+                        <img class="chat-img" onclick="imgShow(this)" src="./img/mm.jpg" alt="">
+                    </div>
+                </div>
+            </div>
+            <div class="rightd">
+                <div class="rightd_m">
+                    <div class="user_head">
+                        <span class="user_head_item username">(02-01 00:00)他二舅</span>
+                    </div>
+                    <div class="speech right">
+                        <img class="chat-img" onclick="imgShow(this)" src="./img/56ce6f40ef3d2.jpg" alt="">
+                    </div>
+                </div>
+
+                <div class="rightd_h">
+                    <img class="head-img" src="./avatar/gg.jpeg" alt=""/>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- fixed定位的底部 （absolute绝对定位也可以）-->
+    <footer id="chatinput">
+        <div><button class="inputimg btn btn-primary">图</button></div>
+        <div><input type="text" class="inputbox" /></div>
+        <div><button class="inputsubmit btn btn-success">发送</button></div>
+    </footer>
+</div>
+
+<div id="imgshow">
+    <img src="" alt="">
+</div>
+
+<script src="js/jquery.min.js"></script>
+<script src="js/index.js" ></script>
+<script src="js/ws.js" ></script>
+<script>
+    $(document).ready(function () {
+        msgBoxSrollToTop()
+    })
+    function msgBoxSrollToTop() {
+        var main = document.getElementById("main")
+        main.scrollTop = main.scrollHeight
+    }
+</script>
+</body>
+</html>

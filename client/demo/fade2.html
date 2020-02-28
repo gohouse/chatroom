@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+
+<style>
+    img{
+        width: 5rem;
+        overflow: hidden;
+        margin: 0 auto;
+    }
+    #img img{
+        width: 100%;
+        transition:all 1s;/*图片放大过程的时间*/
+        position: relative;
+    }
+    img:hover{
+        cursor: crosshair;
+        transform: scale(1.9);  /*以y轴为中心旋转*/
+    }
+</style>
+<body>
+<div id="img">
+    <img src="img/chuyin.jpg" alt=""><!--放图片-->
+</div>
+</body>
+</html>

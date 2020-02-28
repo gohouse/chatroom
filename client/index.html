@@ -18,7 +18,7 @@
 </head>
 <body>
 <div class="container">
-    <div>
+    <head>
         <center><h1>chat room</h1></center>
         <div class="form-row">
             <div class="input-group mb-2 col-sm-6">
@@ -43,22 +43,25 @@
             </div>
             -->
         </div>
-    </div>
+    </head>
 
     <div class="form-group">
         <textarea class="form-control" id="msgBox" rows="10"></textarea>
     </div>
 
     <div class="input-group">
+        <div class="input-group-prepend">
+            <button class="btn btn-info" type="button" onclick="sendRandMsg()">图片</button>
+        </div>
         <input type="text" class="form-control form-control-lg" id="message" placeholder="pre send message">
         <div class="input-group-append">
-            <button class="btn btn-warning" type="button" onclick="sendRandMsg()">随机消息</button>
+            <!--<button class="btn btn-info" type="button" onclick="sendRandMsg()">图片</button>-->
             <button class="btn btn-success" type="button" onclick="sendMsg()">发送</button>
         </div>
     </div>
 
 
-    <div class="input-group">
+    <div class="input-group" style="display: none">
         <div id="notice" class="color-red"></div>
     </div>
 </div>

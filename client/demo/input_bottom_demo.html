@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+
+        header, footer, main {
+            display: block;
+        }
+
+        header {
+            position: fixed;
+            height: 50px;
+            left: 0;
+            right: 0;
+            top: 0;
+        }
+
+        footer {
+            position: fixed;
+            height: 34px;
+            left: 0;
+            right: 0;
+            bottom: 0;
+        }
+
+        main {
+            /* main绝对定位，进行内部滚动 */
+            position: absolute;
+            top: 50px;
+            bottom: 34px;
+            /* 使之可以滚动 */
+            overflow-y: scroll;
+            /* 增加该属性，可以增加弹性，是滑动更加顺畅 */
+            -webkit-overflow-scrolling: touch;
+        }
+
+        main .content {
+            /*height: 2000px;*/
+        }
+    </style>
+</head>
+<body class="layout-scroll-fixed">
+<!-- fixed定位的头部 (absolute绝对定位也可以)-->
+<header>
+
+</header>
+
+<!-- 可以滚动的区域 -->
+<main id="main">
+    <div class="content">
+        <!-- 内容在这里... -->
+        啊啊啊啊 <br><br><br><br>
+        啊啊啊啊 <br><br><br><br>
+        啊啊啊啊 <br><br><br><br>
+        啊啊啊啊 <br><br><br><br>
+        啊啊啊啊 <br><br><br><br>
+        啊啊啊啊 <br><br><br><br>
+        啊啊啊啊 <br><br><br><br>
+        啊啊啊啊 <br><br><br><br>
+        啊啊啊啊 <br><br><br><br>
+        啊啊啊啊 <br><br><br><br>
+        啊啊啊啊 <br><br><br><br>
+        啊啊啊啊 <br><br><br><br>
+        啊啊啊啊 <br><br><br><br>
+    </div>
+</main>
+
+<!-- fixed定位的底部 （absolute绝对定位也可以）-->
+<footer>
+    <input type="text" placeholder="Footer..."/>
+    <button class="submit">提交</button>
+</footer>
+
+<script>
+    var main = document.getElementById("main")
+    main.scrollTop = main.scrollHeight
+</script>
+</body>
+</html>

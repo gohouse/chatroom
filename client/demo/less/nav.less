@@ -1,0 +1,125 @@
+
+
+        #header {
+            position: absolute;
+            height: 3rem;
+            /*left: 0;*/
+            /*right: 0;*/
+            top: 0;
+            line-height: 3rem;
+        }
+
+        #footer {
+            position: absolute;
+            /*height: 34px;*/
+            /*left: 0;*/
+            /*right: 0;*/
+            bottom: 0;
+        }
+
+        #main {
+            /* main绝对定位，进行内部滚动 */
+            position: fixed;
+            top: 3rem;
+            /*bottom: 3rem;*/
+            /* 使之可以滚动 */
+            /*overflow-y: scroll;*/
+            /* 增加该属性，可以增加弹性，是滑动更加顺畅 */
+            -webkit-overflow-scrolling: touch;
+            border: 1px solid #000;
+            /*width: 100%;*/
+        }
+
+        /*.content {*/
+        /*    height: 2000px;*/
+        /*    !*width: 90%;*!*/
+        /*}*/
+
+        /*.flow-left{*/
+        /*    float: left;*/
+        /*}*/
+        /*.flow-right{*/
+        /*    float: right;*/
+        /*}*/
+
+        img {
+            max-width: 3.6rem;
+            max-height: 3.6rem;
+            overflow: hidden;
+            border-radius: 1.8rem;
+        }
+
+        .msgBoxItem {
+            display: grid;
+            grid-template-columns: 4rem auto;
+            border: 1px solid #000;
+            margin: 0.5rem 0;
+        }
+        .msgBoxItem2 {
+            display: grid;
+            grid-template-columns: auto 3.6rem;
+            border: 1px solid #000;
+            margin: 0.5rem 0;
+            /*background: #60a361;*/
+            /*border-radius: 0.5rem;*/
+            /*color: #fff;*/
+        }
+
+        .msgBoxItem-left, .msgBoxItem-right {
+            display: inline-block;
+        }
+        .msgBoxItem-left2 {
+            /*margin-right: -1.5rem;*/
+            margin-left: 3.6rem;
+            .username2{
+                text-align: right;
+            }
+            .msgText2 {
+                background-color: #60a361;
+                border-radius: 0.5rem;
+                /*padding-right: -15px;*/
+            }
+        }
+
+        #msgbox {
+            width: 100%;
+            position: relative;
+            top: 3.5rem;
+            bottom: 0;
+            .content {
+                        height: 100rem;
+                        overflow-y: scroll;
+                    }
+        }
+
+.chat-bubble{
+  position: relative;
+  margin:12px;
+  padding:5px 8px;
+  word-break: break-all;
+  background: #fff;
+  border: 1px solid #989898;
+  border-radius: 5px;
+  max-width:180px;
+}
+.chat-bubble-right {}
+.chat-bubble-right:before {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 0;
+  right: -20px;
+  top:5px;
+  border: 10px solid;
+  border-color:transparent transparent transparent #989898;
+}
+.chat-bubble-right:after {
+ content: '';
+ position: absolute;
+ width: 0;
+ height: 0;
+ right:-16px;
+ top:7px;
+ border: 8px solid;
+ border-color:transparent transparent transparent #ffffff ;
+}

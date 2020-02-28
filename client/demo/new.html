@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <title>Document</title>
+    <style>
+
+        #header {
+            position: absolute;
+            height: 3rem;
+            /*left: 0;*/
+            /*right: 0;*/
+            top: 0;
+            line-height: 3rem;
+        }
+
+        #footer {
+            position: absolute;
+            /*height: 34px;*/
+            /*left: 0;*/
+            /*right: 0;*/
+            bottom: 0;
+        }
+
+        #main {
+            /* main绝对定位，进行内部滚动 */
+            position: fixed;
+            top: 3rem;
+            /*bottom: 3rem;*/
+            /* 使之可以滚动 */
+            /*overflow-y: scroll;*/
+            /* 增加该属性，可以增加弹性，是滑动更加顺畅 */
+            -webkit-overflow-scrolling: touch;
+            border: 1px solid #000;
+            /*width: 100%;*/
+        }
+
+        /*.content {*/
+        /*    height: 2000px;*/
+        /*    !*width: 90%;*!*/
+        /*}*/
+
+        /*.flow-left{*/
+        /*    float: left;*/
+        /*}*/
+        /*.flow-right{*/
+        /*    float: right;*/
+        /*}*/
+
+        /*img{*/
+        /*    width: 100%;*/
+        /*    max-width: 3rem;*/
+        /*}*/
+    </style>
+</head>
+<body>
+<!-- fixed定位的头部 (absolute绝对定位也可以)-->
+<div class="container">
+    <div id="header" class="row">
+
+            <div class="col">
+                <button>返回</button>
+            </div>
+            <div class="col-6">
+                <center>haha</center>
+            </div>
+            <div class="col">
+                <button class="flow-right">返回</button>
+            </div>
+    </div>
+
+    <!-- 可以滚动的区域 -->
+    <div id="main" class="row">
+        <div class="content col-xs-12">
+            <!-- 内容在这里... -->
+            <div class="row">
+                <div class="col-xs-3"><img src="./avatar.jpg"></div>
+                <div class="col-xs-9">
+                    <div class="col-xs-12">2323</div>
+                    <div class="col-xs-12">2323</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- fixed定位的底部 （absolute绝对定位也可以）-->
+    <div id="footer" class="row">
+        <div class="input-group">
+            <div class="input-group-prepend">
+                <button class="btn btn-info" type="button" onclick="sendRandMsg()">图片</button>
+            </div>
+            <input type="text" class="form-control form-control-lg" id="message" placeholder="pre send message">
+            <div class="input-group-append">
+                <!--<button class="btn btn-info" type="button" onclick="sendRandMsg()">图片</button>-->
+                <button class="btn btn-success" type="button" onclick="sendMsg()">发送</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.15.0/umd/popper.min.js"
+        integrity="sha384-L2pyEeut/H3mtgCBaUNw7KWzp5n9+4pDQiExs933/5QfaTh8YStYFFkOzSoXjlTb"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+</body>
+</html>
